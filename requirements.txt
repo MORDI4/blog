@@ -4,3 +4,5 @@ Flask-Migrate>=4.0.0
 python-dotenv>=1.0.0
 ipython>=8.0.0
 flask-shell-ipython>=0.3.0
+flask-wtf
+WTForms
