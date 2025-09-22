@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; width: auto; max-width: 500px;">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show mb-2" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="container mt-4">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Tytuł</th>
+      <th scope="col">Treść</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for draft in all_drafts %}
+    <tr>
+      <td>{{ draft.pub_date.strftime('%Y-%m-%d') }}</td>
+      <td><a href="{{ url_for('edit_entry', entry_id=draft.id) }}">{{ draft.title }}</a></td>
+      <td>{{ draft.body|truncate(100, true) }}</td>
+      <td><a href="" class="btn btn-danger">Usuń</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
