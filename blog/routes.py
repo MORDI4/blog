@@ -84,5 +84,14 @@ def drafts():
     all_drafts = Entry.query.filter_by(is_published=False).order_by(Entry.pub_date.desc())
     return render_template("draft.html", all_drafts=all_drafts)
 
-
-    
+@app.route("/delete/<int:entry_id>", methods=['POST'])
+@login_required
+def delete(entry_id):
+    entry_to_delete = Entry.query.get(entry_id)
+    if entry_to_delete:       
+        db.session.delete(entry_to_delete)
+        db.session.commit()
+        flash("Wpis został usunięty.", "success")
+    else:
+        flash("Nie znaleziono wpisu.", "danger")
+    return redirect(url_for('index'))
