@@ -106,3 +106,8 @@ Aby uzyskać dostęp do funkcji wymagających logowania, użyj domyślnych danyc
 
 - Login: admin
 - Hasło: admin
+
+## 🔗 Link do aplikacji
+
+Aplikacja jest dostępna online pod adresem:
+https://blog-production-f954.up.railway.app/
